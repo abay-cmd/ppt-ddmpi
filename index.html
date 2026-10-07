@@ -5,147 +5,179 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Budaya & Iklim Organisasi Pendidikan</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Reveal.js Core CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
-    
-    <!-- Google Fonts: Oswald (Headers) & Inter (Body) -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Export Libraries: html2canvas, jsPDF, PptxGenJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.11.0/libs/jszip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.11.0/dist/pptxgen.min.js"></script>
 
     <style>
-        /* === CREATIVE AGENCY THEME === */
         :root {
             --brand-red: #FF102A;
             --brand-black: #111111;
             --brand-white: #FFFFFF;
-            --brand-gray: #E5E7EB;
+            --brand-gray: #F4F4F4;
         }
 
-        body { font-family: 'Inter', sans-serif; background-color: var(--brand-black); }
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden; font-family: 'Inter', sans-serif; background-color: var(--brand-black); }
         .reveal .slides { text-align: left; }
         
-        /* Tipografi Brutalist */
+        /* Typography */
         .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             line-height: 0.9;
             letter-spacing: -0.02em;
-            margin: 0 0 15px 0;
+            margin: 0 0 20px 0;
             font-weight: 700;
         }
+        .reveal p, .reveal li { font-family: 'Inter', sans-serif; font-size: 1.2rem; line-height: 1.4; color: #333; }
+        .bg-black p, .bg-black li { color: #e5e7eb; }
+        .bg-black .text-black { color: var(--brand-white) !important; }
 
-        .reveal p, .reveal li {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.3rem;
-            line-height: 1.4;
-        }
+        /* Colors */
+        .text-red { color: var(--brand-red) !important; }
+        .text-black { color: var(--brand-black) !important; }
+        .text-white { color: var(--brand-white) !important; }
+        .bg-red { background-color: var(--brand-red) !important; }
+        .bg-black { background-color: var(--brand-black) !important; }
+        .bg-white { background-color: var(--brand-white) !important; }
+        .bg-gray { background-color: var(--brand-gray) !important; }
 
-        .reveal li { margin-bottom: 12px; }
-
-        /* Utilitas Warna (Penting untuk rendering akurat) */
-        .text-red { color: #FF102A !important; }
-        .text-black { color: #111111 !important; }
-        .text-white { color: #FFFFFF !important; }
-        .bg-red { background-color: #FF102A !important; }
-        .bg-black { background-color: #111111 !important; }
-        .bg-white { background-color: #FFFFFF !important; }
-        .bg-gray { background-color: #E5E7EB !important; }
-
-        /* === ANIMASI MOTION GRAPHIC (HOVER) === */
-        /* Kata/Teks */
-        .mg-hover {
-            display: inline-block;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: crosshair;
-        }
-        .mg-hover:hover {
-            transform: translateY(-8px) scale(1.1) skewX(-4deg);
-            color: #FF102A !important;
-            text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
-            z-index: 20;
-            position: relative;
-        }
-        /* Kotak/Blok Elemen */
-        .mg-block-hover {
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-        .mg-block-hover:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 12px 12px 0px #FF102A;
-            border-color: #111111 !important;
-            z-index: 10;
-            position: relative;
-        }
-
-        /* Layout & Dekorasi */
-        .slide-border { border: 8px solid #111111; padding: 40px; height: 100%; box-sizing: border-box; background: #FFFFFF; position: relative; }
-        .bg-pattern { background-image: radial-gradient(#111111 2px, transparent 2px); background-size: 20px 20px; opacity: 0.05; position: absolute; inset: 0; z-index: -1; }
+        .mg-hover { display: inline-block; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: default; }
+        .mg-hover:hover { transform: translateY(-5px) scale(1.05) skewX(-2deg); color: var(--brand-red) !important; text-shadow: 3px 3px 0px rgba(0,0,0,0.1); z-index: 10; position: relative; }
+        .bg-black .mg-hover:hover { color: var(--brand-red) !important; text-shadow: 3px 3px 0px rgba(255,255,255,0.1); }
         
-        .huge-text { font-size: 4.5rem; }
-        .massive-text { font-size: 7rem; line-height: 0.85; }
+        .mg-block-hover { transition: all 0.4s ease; }
+        .mg-block-hover:hover { transform: scale(1.02); box-shadow: 10px 10px 0px var(--brand-red); border-color: var(--brand-black); z-index: 20; position: relative; }
+
+        /* Slide Layouts */
+        .slide-border { border: 8px solid var(--brand-black); padding: 40px; height: 100%; box-sizing: border-box; background: var(--brand-white); position: relative; }
+        .bg-pattern { background-image: radial-gradient(var(--brand-black) 2px, transparent 2px); background-size: 20px 20px; opacity: 0.05; position: absolute; inset: 0; z-index: -1; }
+        .huge-text { font-size: 5rem; }
+        .massive-text { font-size: 8rem; line-height: 0.8; }
+        .citation { font-size: 0.8rem !important; font-weight: 700; color: var(--brand-red) !important; border-left: 3px solid var(--brand-black); padding-left: 10px; margin-top: 20px; display: inline-block;}
+        .bg-black .citation { border-left-color: var(--brand-red); color: var(--brand-white) !important; }
+
+        .scene-container { width: 100%; height: 100%; overflow: hidden; position: absolute; top: 0; left: 0; background-color: var(--brand-gray); cursor: pointer; }
+        .sunset-bg { background: linear-gradient(to bottom, #111111 0%, #FF102A 100%); }
+        .scene-svg { width: 100%; height: 100%; transition: transform 1.5s cubic-bezier(0.25, 0.8, 0.25, 1); transform-origin: 50% 65%; }
         
-        /* Referensi/Kutipan */
-        .citation { font-size: 0.85rem !important; font-weight: 800; color: #FF102A; border-left: 4px solid #111111; padding-left: 10px; margin-top: 20px; display: inline-block;}
+        /* Zoom effect on hover */
+        .scene-container:hover .scene-svg { transform: scale(3.5) translateY(5%); }
+        
+        .start-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.8s ease 0.5s; pointer-events: none; background: var(--brand-black); border: 4px solid var(--brand-red); padding: 20px 40px; text-align: center; }
+        .scene-container:hover .start-overlay { opacity: 1; pointer-events: auto; box-shadow: 15px 15px 0px var(--brand-red); }
+        .start-overlay h1 { color: var(--brand-white); margin: 0; font-size: 3rem; }
+        .start-overlay p { color: var(--brand-gray); margin: 0; font-size: 1rem; text-transform: uppercase; font-weight: bold; letter-spacing: 2px;}
 
-        /* === KONTROL UI TANGGUH (DIPINDAH KE KIRI ATAS) === */
-        #floating-controls {
-            position: fixed; top: 20px; left: 20px; z-index: 9999;
-            display: flex; gap: 10px; flex-direction: column;
-        }
-        .btn-control {
-            background: #FF102A; color: white; border: 3px solid #111111; padding: 10px 15px; font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem; cursor: pointer; text-transform: uppercase; transition: all 0.2s; box-shadow: 4px 4px 0px #111111;
-        }
-        .btn-control:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0px #111111; }
-        .btn-control:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0px #111111; }
+        /* Keyframes */
+        @keyframes leafSway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(3deg); } }
+        .anim-leaf { transform-origin: center bottom; animation: leafSway 4s ease-in-out infinite; }
+        @keyframes smokeRise { 0% { opacity: 0; transform: translateY(0) scale(1); } 50% { opacity: 0.6; } 100% { opacity: 0; transform: translateY(-30px) scale(1.5); } }
+        .anim-smoke { animation: smokeRise 2.5s infinite; }
+        .anim-smoke-delay { animation: smokeRise 2.5s infinite 1.2s; }
+        @keyframes lightFlicker { 0%, 100% { opacity: 0.8; } 50% { opacity: 0.4; } }
+        .anim-light { animation: lightFlicker 3s infinite; }
+        @keyframes cloudMove { from { transform: translateX(-20%); } to { transform: translateX(120%); } }
+        .anim-cloud { animation: cloudMove 30s linear infinite; }
+        .anim-cloud-fast { animation: cloudMove 20s linear infinite; }
 
-        /* Toast Notifikasi */
-        #custom-toast {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-30px);
-            background: #111111; color: #FFFFFF; border: 3px solid #FF102A;
-            padding: 15px 30px; font-family: 'Oswald', sans-serif; font-size: 1.3rem; text-align: center;
-            z-index: 10000; opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 6px 6px 0px #FF102A;
-        }
-        #custom-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        #floating-controls { position: fixed; top: 20px; left: 20px; z-index: 9999; display: flex; gap: 10px; flex-direction: column; }
+        .btn-control { background: var(--brand-black); color: var(--brand-white); border: 2px solid var(--brand-red); padding: 8px 12px; font-family: 'Oswald', sans-serif; font-size: 0.9rem; cursor: pointer; text-transform: uppercase; transition: all 0.2s; box-shadow: 4px 4px 0px var(--brand-red); }
+        .btn-control:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--brand-red); background: var(--brand-red); border-color: var(--brand-black); }
+        
+        #toast-notification { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-50px); background: var(--brand-black); color: var(--brand-white); border: 3px solid var(--brand-red); padding: 15px 30px; font-family: 'Oswald', sans-serif; font-size: 1.2rem; z-index: 10000; opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 5px 5px 0px var(--brand-red); pointer-events: none; }
+        #toast-notification.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* Responsif HP */
         @media (max-width: 768px) {
-            .massive-text { font-size: 3.5rem; }
-            .huge-text { font-size: 2.5rem; }
-            .slide-border { padding: 15px; border-width: 4px; }
-            #floating-controls { top: 10px; left: 10px; flex-direction: row; }
-            .btn-control { font-size: 0.8rem; padding: 5px 10px; }
-            .mg-hover:hover, .mg-block-hover:hover { transform: none; box-shadow: none; text-shadow: none; }
+            .massive-text { font-size: 4rem; }
+            .huge-text { font-size: 3rem; }
+            .slide-border { padding: 20px; border-width: 4px; }
+            #floating-controls { flex-direction: row; top: 10px; left: 10px; }
+            .btn-control { padding: 5px 8px; font-size: 0.7rem; box-shadow: 2px 2px 0px var(--brand-red); }
+            .start-overlay h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Toast UI -->
-    <div id="custom-toast">Notifikasi</div>
-
-    <!-- Floating Actions (Kiri Atas) -->
     <div id="floating-controls">
+        <button class="btn-control" onclick="toggleFullScreen()"><i class="fas fa-expand" id="fs-icon"></i> Fullscreen</button>
         <button class="btn-control" onclick="exportPDF()"><i class="fas fa-file-pdf"></i> Download PDF</button>
         <button class="btn-control" onclick="exportPPT()"><i class="fas fa-file-powerpoint"></i> Download PPTX</button>
     </div>
+    <div id="toast-notification">Notifikasi</div>
 
-    <!-- REVEAL.JS PRESENTATION -->
     <div class="reveal">
         <div class="slides">
+
+            <section data-transition="fade" class="no-export" style="height: 100%;">
+                <div class="scene-container" onclick="Reveal.slide(1)">
+                    <svg class="scene-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <linearGradient id="laptopLight1" x1="50%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8" />
+                                <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="laptopLight2" x1="50%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8" />
+                                <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Ground -->
+                        <rect x="0" y="450" width="1000" height="150" fill="#111111" />
+
+                        <!-- Tree -->
+                        <path d="M 500 450 C 480 300, 520 200, 500 50 L 520 50 C 540 200, 500 300, 520 450 Z" fill="#111111" />
+                        <path d="M 510 250 C 450 180, 400 150, 350 100 L 370 90 C 420 140, 470 170, 520 230 Z" fill="#111111" />
+                        <path d="M 510 200 C 580 150, 630 100, 700 80 L 710 100 C 640 120, 590 170, 520 220 Z" fill="#111111" />
+
+                        <!-- Animated Leaves -->
+                        <g class="anim-leaf" transform="translate(500, 150)">
+                            <circle cx="-150" cy="-50" r="120" fill="#FF102A" />
+                            <circle cx="100" cy="-80" r="140" fill="#FF102A" opacity="0.9" />
+                            <circle cx="0" cy="-120" r="160" fill="#111111" />
+                            <circle cx="-80" cy="-150" r="100" fill="#FF102A" />
+                            <circle cx="180" cy="-20" r="110" fill="#111111" />
+                        </g>
+
+                        <!-- Person 1 -->
+                        <g transform="translate(350, 460)">
+                            <path d="M -40 0 C -40 -60, -20 -100, 10 -120 C 30 -100, 40 -60, 20 0 Z" fill="#111111" />
+                            <circle cx="10" cy="-140" r="25" fill="#111111" />
+                            <path d="M -50 0 C -60 -20, 0 -30, 40 -10 C 60 0, 0 10, -50 0 Z" fill="#111111" />
+                            <polygon points="50,-30 -20,-150 40,-150" fill="url(#laptopLight1)" class="anim-light" />
+                            <rect x="40" y="-40" width="30" height="20" rx="3" fill="#FFFFFF" transform="rotate(-15 40 -40)" />
+                            <rect x="-60" y="-20" width="15" height="20" fill="#FF102A" />
+                            <path d="M -45 -15 C -40 -15, -40 -5, -45 -5" fill="none" stroke="#FF102A" stroke-width="3" />
+                            <g class="anim-smoke"><path d="M -55 -25 Q -65 -35, -50 -45 T -55 -60" fill="none" stroke="#FFFFFF" stroke-width="2" /></g>
+                        </g>
+
+                        <!-- Person 2 -->
+                        <g transform="translate(650, 460)">
+                            <path d="M 40 0 C 40 -60, 20 -100, -10 -120 C -30 -100, -40 -60, -20 0 Z" fill="#111111" />
+                            <circle cx="-10" cy="-140" r="25" fill="#111111" />
+                            <path d="M 50 0 C 60 -20, 0 -30, -40 -10 C -60 0, 0 10, 50 0 Z" fill="#111111" />
+                            <polygon points="-50,-30 20,-150 -40,-150" fill="url(#laptopLight2)" class="anim-light" />
+                            <rect x="-70" y="-40" width="30" height="20" rx="3" fill="#FFFFFF" transform="rotate(15 -70 -40)" />
+                            <rect x="50" y="-20" width="15" height="20" fill="#FF102A" />
+                            <path d="M 65 -15 C 70 -15, 70 -5, 65 -5" fill="none" stroke="#FF102A" stroke-width="3" />
+                            <g class="anim-smoke-delay"><path d="M 55 -25 Q 45 -35, 60 -45 T 55 -60" fill="none" stroke="#FFFFFF" stroke-width="2" /></g>
+                        </g>
+                    </svg>
+                    <div class="start-overlay">
+                        <h1>MULAI PRESENTASI</h1>
+                        <p>Klik Untuk Memulai</p>
+                    </div>
+                </div>
+            </section>
 
             <section data-transition="zoom" data-background-color="#F4F4F4">
                 <div class="slide-border relative overflow-hidden flex flex-col justify-center">
@@ -153,19 +185,16 @@
                     <div class="absolute top-0 right-0 p-5 text-xl font-bold">
                         <span class="mg-hover">2</span><span class="mg-hover">0</span><span class="mg-hover">2</span><span class="mg-hover">6</span>
                     </div>
-                    
                     <div class="flex items-center gap-4 mb-4">
-                        <img src="logo-uin.png" alt="Logo UIN" class="w-20 object-contain mg-hover drop-shadow-xl" onerror="this.src='https://placehold.co/100x100/111/FFF?text=UIN'">
-                        <h3 class="mg-hover m-0 text-gray-500">PASCASARJANA UIN SGD</h3>
+                        <img src="logo-uin.png" alt="Logo UIN" class="h-16 object-contain mg-hover" onerror="this.src='https://placehold.co/100x100/111111/FFFFFF?text=UIN'">
+                        <h3 class="mg-hover m-0 tracking-widest text-gray-500">PASCASARJANA UIN SGD</h3>
                     </div>
-                    
                     <h1 class="massive-text text-black">
                         <span class="mg-hover">BUDAYA</span><br>
                         <span class="mg-hover text-red">& IKLIM</span><br>
                         <span class="mg-hover">ORGANISASI</span>
                     </h1>
-                    
-                    <div class="mt-6 grid grid-cols-2 gap-4 border-t-8 border-black pt-4">
+                    <div class="mt-8 grid grid-cols-2 gap-4 border-t-4 border-black pt-4">
                         <div>
                             <p class="font-bold text-sm uppercase mb-1 mg-hover text-red">Penulis:</p>
                             <p class="font-bold text-lg mg-hover">Akbar Tausiur Rido</p>
@@ -173,70 +202,65 @@
                         </div>
                         <div>
                             <p class="font-bold text-sm uppercase mb-1 mg-hover text-red">Dosen Pengampu:</p>
-                            <p class="font-bold text-lg mg-hover">Dr. Ujang Suyatman, M.Ag.</p>
+                            <p class="font-bold text-lg mg-hover">Dr. Ujang Suyatman, M. Ag.</p>
                         </div>
                     </div>
-                    <p class="citation mg-hover">Referensi Utama: Hoy, W. K., & Miskel, C. G. (2008)</p>
+                    <p class="citation mt-5 mg-hover">Referensi Utama: Hoy, W. K., & Miskel, C. G. (2008)</p>
                 </div>
             </section>
 
             <section data-transition="slide" data-background-color="#111111">
                 <div class="slide-border bg-black text-white relative">
-                    <h1 class="massive-text text-white mb-8"><span class="mg-hover">TABLE</span><br><span class="mg-hover text-red">OF CONTENTS</span></h1>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="border-t-4 border-red pt-2 mg-block-hover">
-                            <h4 class="text-red">01</h4>
-                            <h5 class="text-white">Latar Belakang</h5>
+                    <h1 class="massive-text text-white mb-10"><span class="mg-hover">TABLE</span><br><span class="mg-hover text-red">OF CONTENTS</span></h1>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="border-t-2 border-red pt-2 mg-block-hover">
+                            <h4 class="text-red">01</h4><h5 class="text-white">Latar Belakang</h5>
                         </div>
-                        <div class="border-t-4 border-red pt-2 mg-block-hover">
-                            <h4 class="text-red">02</h4>
-                            <h5 class="text-white">Metodologi</h5>
+                        <div class="border-t-2 border-red pt-2 mg-block-hover">
+                            <h4 class="text-red">02</h4><h5 class="text-white">Metodologi</h5>
                         </div>
-                        <div class="border-t-4 border-red pt-2 mg-block-hover">
-                            <h4 class="text-red">03</h4>
-                            <h5 class="text-white">Konsep Budaya</h5>
+                        <div class="border-t-2 border-red pt-2 mg-block-hover">
+                            <h4 class="text-red">03</h4><h5 class="text-white">Konsep Budaya</h5>
                         </div>
-                        <div class="border-t-4 border-red pt-2 mg-block-hover">
-                            <h4 class="text-red">04</h4>
-                            <h5 class="text-white">Iklim & Trust</h5>
+                        <div class="border-t-2 border-red pt-2 mg-block-hover">
+                            <h4 class="text-red">04</h4><h5 class="text-white">Iklim & Trust</h5>
                         </div>
-                        <div class="border-t-4 border-red pt-2 mg-block-hover">
-                            <h4 class="text-red">05</h4>
-                            <h5 class="text-white">Internalisasi</h5>
+                        <div class="border-t-2 border-red pt-2 mg-block-hover">
+                            <h4 class="text-red">05</h4><h5 class="text-white">Internalisasi</h5>
                         </div>
-                        <div class="border-t-4 border-red pt-2 mg-block-hover">
-                            <h4 class="text-red">06</h4>
-                            <h5 class="text-white">Kinerja</h5>
+                        <div class="border-t-2 border-red pt-2 mg-block-hover">
+                            <h4 class="text-red">06</h4><h5 class="text-white">Kinerja</h5>
                         </div>
-                        <div class="border-t-4 border-red pt-2 mg-block-hover">
-                            <h4 class="text-red">07</h4>
-                            <h5 class="text-white">Transformasi</h5>
+                        <div class="border-t-2 border-red pt-2 mg-block-hover">
+                            <h4 class="text-red">07</h4><h5 class="text-white">Transformasi</h5>
                         </div>
-                        <div class="border-t-4 border-red pt-2 mg-block-hover">
-                            <h4 class="text-red">08</h4>
-                            <h5 class="text-white">Kesimpulan</h5>
+                        <div class="border-t-2 border-red pt-2 mg-block-hover">
+                            <h4 class="text-red">08</h4><h5 class="text-white">Kesimpulan</h5>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section data-transition="convex" data-background-color="#F4F4F4">
-                <div class="slide-border grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="slide-border grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div>
-                        <h1 class="huge-text text-red mb-0"><span class="mg-hover">GAP</span></h1>
-                        <h1 class="huge-text text-black mt-0"><span class="mg-hover">ANALYSIS</span></h1>
-                        <div class="mt-4 border-l-8 border-black pl-4">
-                            <ul class="list-none space-y-4">
-                                <li class="mg-hover"><span class="text-red font-bold block">Das Sollen (Ideal):</span> Unsur organisasi selaras wujudkan efektivitas.</li>
-                                <li class="mg-hover"><span class="text-red font-bold block">Das Sein (Fakta):</span> Motivasi turun, manajemen monoton, juknis kaku.</li>
-                                <li class="mg-hover"><span class="text-red font-bold block">Risiko:</span> Slogan sekolah hilang makna tanpa penghayatan.</li>
+                        <h1 class="huge-text text-red mb-0"><span class="mg-hover">INTRO-</span></h1>
+                        <h1 class="huge-text text-black mt-0"><span class="mg-hover">DUCTION</span></h1>
+                        <div class="mt-6 border-l-4 border-black pl-4">
+                            <h4 class="mg-hover">Das Sollen vs Das Sein</h4>
+                            <ul class="list-disc pl-5 mt-2">
+                                <li class="mg-hover mb-2">Ideal: Unsur struktur, individu, budaya, & politik selaras.</li>
+                                <li class="mg-hover mb-2">Fakta: Rendah motivasi, sekadar mematuhi juknis.</li>
+                                <li class="mg-hover">Dampak: Nilai inti berisiko jadi slogan kosong.</li>
                             </ul>
                         </div>
                         <p class="citation mg-hover">(Hoy & Miskel, 2008; Fandholi dkk., 2023)</p>
                     </div>
-                    <div class="bg-black p-8 text-white mg-block-hover border-r-8 border-b-8 border-red transform rotate-2">
-                        <h3 class="text-red mb-4"><i class="fas fa-exclamation-triangle"></i> KUNCI MASALAH</h3>
-                        <p class="text-sm font-bold leading-relaxed">Akar persoalan mutu terletak pada kualitas <span class="text-red">budaya</span> dan <span class="text-red">suasana kerja</span>, bukan semata pada pembenahan administratif.</p>
+                    <div class="flex justify-center items-center relative">
+                        <div class="w-64 h-64 bg-black rounded-full flex flex-col justify-center items-center z-10 border-8 border-red mg-block-hover">
+                            <i class="fas fa-exclamation-triangle text-white text-6xl mb-2"></i>
+                            <h3 class="text-white">GAP</h3>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -245,24 +269,24 @@
                 <div class="slide-border">
                     <h1 class="huge-text text-black text-center mb-10"><span class="mg-hover">RESEARCH</span> <span class="text-red mg-hover">QUESTIONS</span></h1>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="border-4 border-black p-6 mg-block-hover bg-gray">
-                            <h2 class="text-red mb-2">01</h2>
-                            <p class="font-bold text-black">Bagaimana definisi & level budaya diterapkan di lembaga Islam?</p>
+                        <div class="border-2 border-black p-4 mg-block-hover bg-gray">
+                            <h2 class="text-red">01</h2>
+                            <p class="font-bold text-sm">Bagaimana konsep & level budaya diterapkan di lembaga Islam?</p>
                         </div>
-                        <div class="border-4 border-black p-6 mg-block-hover bg-black text-white">
-                            <h2 class="text-red mb-2">02</h2>
-                            <p class="font-bold text-white">Bagaimana nilai, norma & budaya diinternalisasikan?</p>
+                        <div class="border-2 border-black p-4 mg-block-hover bg-black text-white">
+                            <h2 class="text-red">02</h2>
+                            <p class="font-bold text-sm text-white">Bagaimana nilai & norma diinternalisasikan?</p>
                         </div>
-                        <div class="border-4 border-black p-6 mg-block-hover bg-gray">
-                            <h2 class="text-red mb-2">03</h2>
-                            <p class="font-bold text-black">Bagaimana iklim & kesehatan organisasi dibangun?</p>
+                        <div class="border-2 border-black p-4 mg-block-hover bg-gray">
+                            <h2 class="text-red">03</h2>
+                            <p class="font-bold text-sm">Bagaimana iklim & organizational health dibangun?</p>
                         </div>
-                        <div class="border-4 border-red p-6 mg-block-hover bg-red text-white">
-                            <h2 class="text-black mb-2">04</h2>
-                            <p class="font-bold text-white">Bagaimana mengelola resistensi perubahan budaya?</p>
+                        <div class="border-2 border-black p-4 mg-block-hover bg-red text-white">
+                            <h2 class="text-black">04</h2>
+                            <p class="font-bold text-sm text-white">Bagaimana mengelola resistensi perubahan budaya?</p>
                         </div>
                     </div>
-                    <p class="citation text-center mt-6 mg-hover">(Diadaptasi dari: Hoy & Miskel, 2008)</p>
+                    <p class="citation text-center mt-6 mg-hover block mx-auto">(Diadaptasi dari: Hoy & Miskel, 2008)</p>
                 </div>
             </section>
 
@@ -271,322 +295,269 @@
                     <div>
                         <h1 class="huge-text mb-0"><span class="mg-hover">GOALS</span></h1>
                         <h1 class="huge-text text-red mt-0"><span class="mg-hover">& BENEFITS</span></h1>
-                        <div class="mt-8 border-t-4 border-red pt-4 mg-block-hover">
-                            <h4 class="text-red">TUJUAN UTAMA</h4>
-                            <p class="text-sm font-bold text-gray-300">Menganalisis budaya & iklim pendidikan (Hoy & Miskel) pada lembaga Islam.</p>
+                        <div class="mt-8">
+                            <i class="fas fa-bullseye text-4xl text-red mb-4 mg-hover"></i>
+                            <h4 class="mg-hover">Tujuan Utama</h4>
+                            <p class="text-gray-300 text-sm mg-hover">Menganalisis teori Hoy & Miskel serta penerapannya pada lembaga pendidikan Islam kontemporer.</p>
                         </div>
                     </div>
                     <div class="flex flex-col justify-center space-y-6">
-                        <div class="bg-gray p-4 border-l-8 border-red text-black mg-block-hover">
-                            <h4 class="text-red mb-1">MANFAAT TEORITIS</h4>
-                            <p class="text-sm font-bold">Memadukan teori Barat dengan pijakan empiris nilai keislaman.</p>
+                        <div class="border-l-4 border-red pl-4 mg-block-hover">
+                            <h4>Manfaat Teoritis</h4>
+                            <p class="text-gray-400 text-sm">Memadukan teori Barat dengan pijakan nilai keislaman.</p>
                         </div>
-                        <div class="bg-gray p-4 border-l-8 border-black text-black mg-block-hover">
-                            <h4 class="text-black mb-1">MANFAAT PRAKTIS</h4>
-                            <p class="text-sm font-bold">Sumbang saran bagi kepala madrasah merancang budaya kerja.</p>
+                        <div class="border-l-4 border-white pl-4 mg-block-hover">
+                            <h4>Manfaat Praktis</h4>
+                            <p class="text-gray-400 text-sm">Sumbang saran bagi kepala madrasah dalam mengelola iklim kerja.</p>
                         </div>
+                        <p class="citation mg-hover text-white">(Hoy & Miskel, 2008; Holili & Fitriyah, 2025)</p>
                     </div>
                 </div>
             </section>
 
             <section data-transition="slide" data-background-color="#FFFFFF">
                 <div class="slide-border flex flex-col justify-center">
-                    <h1 class="massive-text text-black mb-10"><span class="mg-hover">METHOD-</span><br><span class="text-red mg-hover">OLOGY</span></h1>
-                    
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="bg-red text-white p-4 rounded-full mg-hover"><i class="fas fa-search text-2xl"></i></div>
+                        <h2 class="m-0 mg-hover">METHODOLOGY</h2>
+                    </div>
+                    <h1 class="massive-text text-black mb-10"><span class="mg-hover">LITERATURE</span> <span class="text-red mg-hover">REVIEW</span></h1>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-black text-white p-6 mg-block-hover transform -skew-x-6">
-                            <h3 class="text-red"><i class="fas fa-search"></i> KUMPUL</h3>
+                        <div class="border-t-4 border-black pt-4 mg-block-hover">
+                            <h3 class="text-red">KUMPULKAN</h3>
                             <p class="text-sm font-bold">Penelusuran basis data akademik (2020-2026).</p>
                         </div>
-                        <div class="bg-red text-white p-6 mg-block-hover transform skew-x-6">
-                            <h3 class="text-black"><i class="fas fa-book"></i> PILIH</h3>
-                            <p class="text-sm font-bold text-black">Teori Hoy & Miskel (2008) sebagai Grand Theory.</p>
+                        <div class="border-t-4 border-black pt-4 mg-block-hover">
+                            <h3 class="text-red">PILIH</h3>
+                            <p class="text-sm font-bold">Buku Hoy & Miskel (2008) sebagai pisau analisis utama.</p>
                         </div>
-                        <div class="bg-gray text-black p-6 border-4 border-black mg-block-hover transform -skew-x-6">
-                            <h3 class="text-red"><i class="fas fa-flask"></i> SINTESIS</h3>
-                            <p class="text-sm font-bold">Interpretasi kualitatif manajemen pendidikan Islam.</p>
+                        <div class="border-t-4 border-black pt-4 mg-block-hover">
+                            <h3 class="text-red">SINTESIS</h3>
+                            <p class="text-sm font-bold">Interpretasi dalam konteks manajemen pendidikan Islam.</p>
                         </div>
                     </div>
-                    <p class="citation mt-10 mg-hover text-center">(Jaosantia & Shobri, 2025a; Hoy & Miskel, 2008)</p>
+                    <p class="citation mt-8 mg-hover">(Jaosantia & Shobri, 2025a; Hoy & Miskel, 2008)</p>
                 </div>
             </section>
 
             <section data-transition="zoom" data-background-color="#F4F4F4">
-                <div class="slide-border">
-                    <h1 class="huge-text text-black text-center mb-10"><span class="mg-hover">OPEN</span> <span class="text-red mg-hover">SYSTEMS</span></h1>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-                        <div class="p-6 border-4 border-black bg-white mg-block-hover">
-                            <i class="fas fa-sitemap text-4xl text-red mb-4"></i>
-                            <h3 class="text-black">STRUKTUR</h3>
-                            <p class="text-xs font-bold">Birokrasi & Aturan.</p>
+                <div class="slide-border grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h1 class="huge-text text-black"><span class="mg-hover">OPEN</span><br><span class="text-red mg-hover">SYSTEMS</span></h1>
+                        <ul class="list-disc pl-5 mt-4 space-y-2">
+                            <li class="mg-hover">Organisasi menerima masukan lingkungan & beradaptasi.</li>
+                            <li class="mg-hover">Perilaku sekolah dibentuk interaksi 4 pilar.</li>
+                        </ul>
+                        <p class="citation mt-6 mg-hover">(Hoy & Miskel, 2008)</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-6 border-2 border-black text-center mg-block-hover">
+                            <i class="fas fa-sitemap text-3xl text-red mb-2"></i><h4 class="text-sm">STRUKTUR</h4>
                         </div>
-                        <div class="p-6 border-4 border-black bg-black text-white mg-block-hover">
-                            <i class="fas fa-user text-4xl text-red mb-4"></i>
-                            <h3 class="text-white">INDIVIDU</h3>
-                            <p class="text-xs font-bold text-gray-400">Kebutuhan & Motivasi.</p>
+                        <div class="bg-black text-white p-6 border-2 border-black text-center mg-block-hover">
+                            <i class="fas fa-user text-3xl text-red mb-2"></i><h4 class="text-sm text-white">INDIVIDU</h4>
                         </div>
-                        <div class="p-6 border-4 border-red bg-red text-white mg-block-hover">
-                            <i class="fas fa-users text-4xl text-black mb-4"></i>
-                            <h3 class="text-black">BUDAYA</h3>
-                            <p class="text-xs font-bold">Nilai Bersama.</p>
+                        <div class="bg-red text-white p-6 border-2 border-red text-center mg-block-hover">
+                            <i class="fas fa-users text-3xl text-white mb-2"></i><h4 class="text-sm text-white">BUDAYA</h4>
                         </div>
-                        <div class="p-6 border-4 border-black bg-white mg-block-hover">
-                            <i class="fas fa-handshake text-4xl text-red mb-4"></i>
-                            <h3 class="text-black">POLITIK</h3>
-                            <p class="text-xs font-bold">Relasi Kuasa Informal.</p>
+                        <div class="bg-white p-6 border-2 border-black text-center mg-block-hover">
+                            <i class="fas fa-handshake text-3xl text-red mb-2"></i><h4 class="text-sm">POLITIK</h4>
                         </div>
                     </div>
-                    <div class="mt-8 bg-black text-white p-4 text-center mg-hover w-full">
-                        <p class="m-0 font-bold">Sistem harus beradaptasi dengan lingkungan untuk bertahan.</p>
-                    </div>
-                    <p class="citation mt-4 mg-hover">(Hoy & Miskel, 2008; Irhas, 2026)</p>
                 </div>
             </section>
 
             <section data-transition="convex" data-background-color="#111111">
-                <div class="slide-border bg-black text-white">
-                    <h1 class="huge-text text-center mb-10"><span class="mg-hover">CULTURAL</span> <span class="text-red mg-hover">LEVELS</span></h1>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="border-2 border-gray-600 p-6 mg-block-hover">
-                            <h2 class="text-white border-b-4 border-red inline-block mb-4">NORMA</h2>
-                            <ul class="list-disc pl-4 text-sm text-gray-300 font-bold space-y-2">
-                                <li>Level paling konkret.</li>
-                                <li>Ekspektasi informal.</li>
-                                <li>Ditegakkan via sanksi sosial.</li>
-                            </ul>
+                <div class="slide-border bg-black text-white flex flex-col justify-center items-center text-center">
+                    <h2 class="mg-hover">CULTURAL <span class="text-red">LEVELS</span></h2>
+                    <p class="mb-10 max-w-2xl mg-hover text-gray-300">Sistem orientasi bersama yang memberi identitas khas.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+                        <div class="border border-gray-700 p-6 relative mg-block-hover">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red text-white px-3 py-1 font-bold text-sm">KONKRET</div>
+                            <h3 class="mt-4 text-white">NORMA</h3>
+                            <p class="text-sm text-gray-400">Ekspektasi informal dengan sanksi sosial langsung.</p>
                         </div>
-                        <div class="border-2 border-gray-600 p-6 mg-block-hover">
-                            <h2 class="text-white border-b-4 border-white inline-block mb-4">NILAI</h2>
-                            <ul class="list-disc pl-4 text-sm text-gray-300 font-bold space-y-2">
-                                <li>Level menengah.</li>
-                                <li>Standar keberhasilan.</li>
-                                <li>Memberi identitas unik.</li>
-                            </ul>
+                        <div class="border border-gray-700 p-6 relative mg-block-hover">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-white text-black px-3 py-1 font-bold text-sm">MENENGAH</div>
+                            <h3 class="mt-4 text-white">NILAI</h3>
+                            <p class="text-sm text-gray-400">Keyakinan standar keberhasilan organisasi.</p>
                         </div>
-                        <div class="border-2 border-red p-6 mg-block-hover bg-gray-900">
-                            <h2 class="text-red border-b-4 border-red inline-block mb-4">ASUMSI</h2>
-                            <ul class="list-disc pl-4 text-sm text-gray-300 font-bold space-y-2">
-                                <li>Level terdalam.</li>
-                                <li>Keyakinan hakikat manusia.</li>
-                                <li>Sangat tahan perubahan.</li>
-                            </ul>
+                        <div class="border border-gray-700 p-6 relative mg-block-hover">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gray-600 text-white px-3 py-1 font-bold text-sm">TERDALAM</div>
+                            <h3 class="mt-4 text-red">ASUMSI</h3>
+                            <p class="text-sm text-gray-400">Keyakinan hakikat manusia yang sangat tahan perubahan.</p>
                         </div>
                     </div>
-                    <p class="citation mt-8 mg-hover text-white">(Hoy & Miskel, 2008; Sukadari, 2020)</p>
+                    <p class="citation mt-10 mg-hover text-white">(Hoy & Miskel, 2008)</p>
                 </div>
             </section>
 
             <section data-transition="slide" data-background-color="#FFFFFF">
-                <div class="slide-border flex flex-col justify-center">
-                    <h1 class="huge-text text-black mb-8"><span class="mg-hover">ORGANIZATIONAL</span> <span class="text-red mg-hover">CLIMATE</span></h1>
-                    
-                    <div class="flex flex-col md:flex-row gap-8">
-                        <div class="w-full md:w-1/3 bg-red text-white p-6 mg-block-hover">
-                            <i class="fas fa-bolt text-5xl mb-4 text-black"></i>
-                            <h3 class="text-black">ANALOGI</h3>
-                            <p class="font-bold text-sm">Budaya adalah <span class="text-black">BATERAI</span> (sumber), Iklim adalah <span class="text-black">CAHAYA</span> yang tampak dan dirasakan harian.</p>
-                        </div>
-                        <div class="w-full md:w-2/3 space-y-4">
-                            <div class="bg-gray p-4 border-l-8 border-black mg-block-hover">
-                                <h4 class="text-red m-0">KETERBUKAAN (OPENNESS)</h4>
-                                <p class="text-sm font-bold">Kerjasama, saling hormat, pimpinan suportif, guru kolegial.</p>
-                            </div>
-                            <div class="bg-black text-white p-4 border-l-8 border-red mg-block-hover">
-                                <h4 class="text-white m-0">KEWARGAAN (CITIZENSHIP)</h4>
-                                <p class="text-sm font-bold text-gray-300">Altruisme, kesungguhan, melampaui tugas formal.</p>
-                            </div>
-                        </div>
+                <div class="slide-border grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <div class="md:col-span-5 bg-red text-white p-8 flex flex-col justify-center mg-block-hover">
+                        <h1 class="huge-text mb-4 text-white">CLIMATE</h1>
+                        <p class="font-bold mb-4">Kualitas lingkungan yang berpijak pada persepsi kolektif.</p>
+                        <p class="text-sm">Analogi: Budaya adalah baterai, Iklim adalah cahaya senter.</p>
                     </div>
-                    <p class="citation mt-8 mg-hover">(Hoy & Miskel, 2008; Basyit, 2020; Setiyani dkk., 2024)</p>
+                    <div class="md:col-span-7 flex flex-col justify-center">
+                        <h3 class="mb-6 mg-hover">LENSA PENGUKURAN</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 mg-hover">
+                                <div class="bg-black text-white w-10 h-10 flex items-center justify-center font-bold">1</div>
+                                <div><h4 class="text-red m-0">KETERBUKAAN</h4><p class="text-sm">Saling hormat, pimpinan suportif.</p></div>
+                            </div>
+                            <div class="flex items-start gap-4 mg-hover">
+                                <div class="bg-black text-white w-10 h-10 flex items-center justify-center font-bold">2</div>
+                                <div><h4 class="text-red m-0">KEPERCAYAAN (TRUST)</h4><p class="text-sm">Yakin atas keandalan, kejujuran, keterbukaan.</p></div>
+                            </div>
+                        </div>
+                        <p class="citation mt-6 mg-hover">(Hoy & Miskel, 2008; Basyit, 2020)</p>
+                    </div>
                 </div>
             </section>
 
             <section data-transition="zoom" data-background-color="#F4F4F4">
                 <div class="slide-border">
-                    <h1 class="huge-text text-black text-center mb-10"><span class="mg-hover">ORGANIZATIONAL</span> <span class="text-red mg-hover">HEALTH</span></h1>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                        <div class="p-4 border-t-8 border-black bg-white mg-block-hover">
-                            <h3 class="text-red">INSTITUSIONAL</h3>
-                            <p class="text-sm font-bold">Integritas institusional terlindungi dari tekanan irasional luar.</p>
+                    <h1 class="huge-text text-center mb-8"><span class="mg-hover text-black">ORGANIZATIONAL</span> <span class="mg-hover text-red">HEALTH</span></h1>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 border-t-8 border-black shadow-lg mg-block-hover">
+                            <h3 class="text-center text-red">INSTITUSIONAL</h3>
+                            <ul class="list-disc pl-4 text-sm mt-4"><li>Terlindungi dari tekanan irasional luar.</li></ul>
                         </div>
-                        <div class="p-4 border-t-8 border-red bg-black text-white mg-block-hover">
-                            <h3 class="text-white">MANAJERIAL</h3>
-                            <p class="text-sm font-bold text-gray-300">Pengaruh, konsiderasi pimpinan, dan dukungan sumber daya.</p>
+                        <div class="bg-black text-white p-6 border-t-8 border-red shadow-lg mg-block-hover">
+                            <h3 class="text-center text-white">MANAJERIAL</h3>
+                            <ul class="list-disc pl-4 text-sm mt-4"><li>Pengaruh & dukungan Kepala Sekolah.</li></ul>
                         </div>
-                        <div class="p-4 border-t-8 border-black bg-white mg-block-hover">
-                            <h3 class="text-red">TEKNIS</h3>
-                            <p class="text-sm font-bold">Moral guru tinggi dan penekanan akademik kuat.</p>
+                        <div class="bg-white p-6 border-t-8 border-black shadow-lg mg-block-hover">
+                            <h3 class="text-center text-red">TEKNIS</h3>
+                            <ul class="list-disc pl-4 text-sm mt-4"><li>Moral guru tinggi & Penekanan Akademik.</li></ul>
                         </div>
                     </div>
-                    
-                    <div class="mt-8 bg-red text-white p-4 text-center font-bold mg-hover">
-                        <p class="m-0">Sekolah sehat mampu atasi lingkungan & fokus pada misi.</p>
-                    </div>
-                    <p class="citation mt-4 mg-hover">(Hoy & Miskel, 2008; Huda, 2021)</p>
+                    <p class="citation text-center mt-8 mg-hover block mx-auto">(Hoy & Miskel, 2008; Huda, 2021)</p>
                 </div>
             </section>
 
             <section data-transition="slide" data-background-color="#111111">
-                <div class="slide-border bg-black text-white">
-                    <h1 class="huge-text text-white text-center mb-10"><span class="mg-hover">FACULTY</span> <span class="text-red mg-hover">TRUST</span></h1>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-                        <div class="border-4 border-gray-600 p-6 text-center mg-block-hover">
-                            <i class="fas fa-user-tie text-4xl text-red mb-4"></i>
-                            <h4 class="text-white">KEPALA SEKOLAH</h4>
-                            <p class="text-xs font-bold text-gray-400">Perilaku penuh pertimbangan, suportif, kolegial.</p>
-                        </div>
-                        <div class="border-4 border-gray-600 p-6 text-center mg-block-hover">
-                            <i class="fas fa-chalkboard-teacher text-4xl text-red mb-4"></i>
-                            <h4 class="text-white">KOLEGA GURU</h4>
-                            <p class="text-xs font-bold text-gray-400">Solidaritas dan profesionalisme antarguru.</p>
-                        </div>
-                        <div class="border-4 border-red p-6 text-center mg-block-hover bg-gray-900">
-                            <i class="fas fa-users text-4xl text-white mb-4"></i>
-                            <h4 class="text-red">MURID & ORTU</h4>
-                            <p class="text-xs font-bold text-gray-400">Orientasi akademik sekolah tinggi.</p>
-                        </div>
-                    </div>
-                    <div class="mt-8 border-l-4 border-red pl-4 mg-hover">
-                        <p class="text-sm font-bold text-gray-300">"Kesediaan rentan berdasarkan keyakinan atas kebajikan, keandalan, kompetensi, kejujuran, dan keterbukaan."</p>
-                    </div>
-                    <p class="citation mt-4 mg-hover text-white">(Hoy & Miskel, 2008; Jani, 2023)</p>
+                <div class="slide-border bg-black text-white flex flex-col justify-center">
+                    <h2 class="text-red mb-4 mg-hover">INTERNALISASI NILAI</h2>
+                    <ul class="list-none space-y-4">
+                        <li class="border-l-4 border-white pl-3 mg-hover">
+                            <span class="font-bold text-red block">1. Konsensus</span>
+                            <span class="text-sm">Visi dan nilai dirumuskan bersama.</span>
+                        </li>
+                        <li class="border-l-4 border-white pl-3 mg-hover">
+                            <span class="font-bold text-red block">2. Pembiasaan</span>
+                            <span class="text-sm">Menerjemahkan nilai kebiasaan sebagai norma pengikat.</span>
+                        </li>
+                        <li class="border-l-4 border-white pl-3 mg-hover">
+                            <span class="font-bold text-red block">3. Keteladanan</span>
+                            <span class="text-sm">Pimpinan mengejawantahkan nilai inti (role model).</span>
+                        </li>
+                    </ul>
+                    <p class="citation mt-8 mg-hover text-white">(Hoy & Miskel, 2008; Wulandari & Nugroho, 2020)</p>
                 </div>
             </section>
 
             <section data-transition="convex" data-background-color="#FFFFFF">
-                <div class="slide-border">
-                    <h1 class="huge-text text-black mb-8"><span class="mg-hover">INTERNALIZATION</span></h1>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        <div class="space-y-4">
-                            <div class="bg-gray p-4 border-l-8 border-black mg-block-hover">
-                                <h4 class="text-red m-0">1. KONSENSUS VISI</h4>
-                                <p class="text-sm font-bold">Visi dirumuskan bersama agar tidak jadi slogan kosong.</p>
-                            </div>
-                            <div class="bg-black text-white p-4 border-l-8 border-red mg-block-hover">
-                                <h4 class="text-white m-0">2. NORMA 5S</h4>
-                                <p class="text-sm font-bold text-gray-300">Menerjemahkan nilai ke kebiasaan informal (Senyum, Sapa, Salam).</p>
-                            </div>
-                            <div class="bg-red text-white p-4 border-l-8 border-black mg-block-hover">
-                                <h4 class="text-black m-0">3. KETELADANAN</h4>
-                                <p class="text-sm font-bold">Pimpinan mengejawantahkan nilai inti harian.</p>
-                            </div>
+                <div class="slide-border flex flex-col justify-center">
+                    <h2 class="mg-hover">MENGELOLA <span class="text-red">RESISTENSI</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                        <div class="bg-gray p-6 border-l-8 border-black mg-block-hover">
+                            <h4 class="text-red mb-2">PERTAHANAN SOSIAL</h4>
+                            <p class="text-sm">Ketakutan atas ketidakpastian memicu penolakan. Ini bentuk pertahanan, bukan sekadar pembangkangan.</p>
                         </div>
-                        <div class="text-center p-8 bg-gray border-4 border-black mg-block-hover">
-                            <i class="fas fa-sync text-6xl text-red mb-6 animate-spin-slow"></i>
-                            <h3 class="text-black">PEMBIASAAN</h3>
-                            <p class="text-sm font-bold">Ritus integrasi & peralihan ubah kognitif jadi perilaku.</p>
+                        <div class="bg-black p-6 border-l-8 border-red mg-block-hover">
+                            <h4 class="text-white mb-2">DIALOG INKLUSIF</h4>
+                            <p class="text-sm text-gray-300">Pendekatan nilai keagamaan dan pelatihan profesional terbukti mengurangi kecemasan guru.</p>
                         </div>
                     </div>
-                    <p class="citation mt-6 mg-hover">(Wulandari & Nugroho, 2020; Nasution dkk., 2025)</p>
+                    <p class="citation mt-8 mg-hover">(Hoy & Miskel, 2008; Tiftazani dkk., 2025)</p>
                 </div>
             </section>
 
-            <section data-transition="slide" data-background-color="#F4F4F4">
-                <div class="slide-border">
-                    <h1 class="huge-text text-black text-center mb-8"><span class="mg-hover">CLIMATE</span> <span class="text-red mg-hover">& PERFORMANCE</span></h1>
-                    
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                        <div class="bg-white p-4 border-4 border-black mg-block-hover">
-                            <i class="fas fa-lock-open text-3xl text-red mb-2"></i>
-                            <h4 class="text-black">KETERBUKAAN</h4>
-                            <p class="text-xs font-bold">Cegah burnout guru.</p>
-                        </div>
-                        <div class="bg-white p-4 border-4 border-black mg-block-hover">
-                            <i class="fas fa-heartbeat text-3xl text-red mb-2"></i>
-                            <h4 class="text-black">KESEHATAN</h4>
-                            <p class="text-xs font-bold">Motivasi intrinsik naik.</p>
-                        </div>
-                        <div class="bg-white p-4 border-4 border-black mg-block-hover">
-                            <i class="fas fa-hand-holding-heart text-3xl text-red mb-2"></i>
-                            <h4 class="text-black">KEWARGAAN</h4>
-                            <p class="text-xs font-bold">Altruisme wujud nyata budaya.</p>
-                        </div>
-                        <div class="bg-red text-white p-4 border-4 border-black mg-block-hover">
-                            <i class="fas fa-chart-bar text-3xl text-black mb-2"></i>
-                            <h4 class="text-white">PRESTASI</h4>
-                            <p class="text-xs font-bold">Dorong efektivitas belajar.</p>
-                        </div>
-                    </div>
-                    <div class="mt-8 bg-black text-white p-4 text-center font-bold mg-hover">
-                        <p class="m-0">Akumulasi komitmen emosional tingkatkan kesehatan organisasi.</p>
-                    </div>
-                    <p class="citation mt-4 mg-hover">(Leong & Nordin, 2021; Komarudin, 2023)</p>
-                </div>
-            </section>
-
-            <section data-transition="zoom" data-background-color="#111111">
-                <div class="slide-border bg-black text-white flex flex-col justify-center">
-                    <h1 class="huge-text text-white mb-8"><span class="mg-hover">MANAGING</span> <span class="text-red mg-hover">RESISTANCE</span></h1>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="border-2 border-gray-600 p-6 mg-block-hover">
-                            <h3 class="text-red mb-4"><i class="fas fa-shield-alt"></i> PERTAHANAN SOSIAL</h3>
-                            <ul class="list-disc pl-4 text-sm font-bold text-gray-300 space-y-2">
-                                <li>Bukan sekadar pembangkangan.</li>
-                                <li>Ketakutan memicu pertahanan status quo.</li>
-                                <li>Wajib identifikasi "Culture Gap".</li>
-                            </ul>
-                        </div>
-                        <div class="border-2 border-red bg-gray-900 p-6 mg-block-hover">
-                            <h3 class="text-white mb-4"><i class="fas fa-lightbulb text-red"></i> KEPEMIMPINAN</h3>
-                            <ul class="list-disc pl-4 text-sm font-bold text-gray-300 space-y-2">
-                                <li>Transformasi via dialog inklusif.</li>
-                                <li>Pendekatan nilai keagamaan redakan cemas.</li>
-                                <li>Latih profesionalisme guru.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <p class="citation mt-8 mg-hover text-white">(Irhas, 2026; Tiftazani dkk., 2025)</p>
-                </div>
-            </section>
-
-            <section data-transition="slide" data-background-color="#FFFFFF">
+            <section data-transition="fade" data-background-color="#F4F4F4">
                 <div class="slide-border grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-                    <div class="md:col-span-5 relative mg-block-hover transform -rotate-3">
-                        <div class="absolute inset-0 bg-red transform translate-x-3 translate-y-3 z-0"></div>
-                        <div class="bg-black text-white p-8 relative z-10 border-4 border-black">
-                            <h1 class="text-white mb-0">CONCLU-</h1>
-                            <h1 class="text-red mt-0">SION</h1>
+                    <div class="md:col-span-5 relative mg-block-hover">
+                        <div class="bg-black text-white p-8 border-4 border-red relative z-10">
+                            <h1 class="text-white mb-0">CONCLU-</h1><h1 class="text-red mt-0">SION</h1>
                         </div>
                     </div>
                     <div class="md:col-span-7 pl-6">
-                        <ul class="space-y-6 list-none">
+                        <ul class="space-y-4 list-none">
                             <li class="mg-hover">
-                                <i class="fas fa-check text-red mr-2 text-2xl"></i>
-                                <span class="font-bold text-black">Esensi Mutu:</span> Budaya & iklim penentu utama efektivitas madrasah.
+                                <span class="font-bold text-red block">Esensi Mutu:</span>
+                                Budaya dan iklim penentu utama efektivitas madrasah.
                             </li>
                             <li class="mg-hover">
-                                <i class="fas fa-check text-red mr-2 text-2xl"></i>
-                                <span class="font-bold text-black">Interkoneksi:</span> Budaya → Iklim → Trust → Organizational Health.
+                                <span class="font-bold text-red block">Interkoneksi:</span>
+                                Budaya -> Iklim Terbuka -> Trust -> Organizational Health.
                             </li>
                             <li class="mg-hover">
-                                <i class="fas fa-check text-red mr-2 text-2xl"></i>
-                                <span class="font-bold text-black">Solusi Kesenjangan:</span> Pembinaan budaya konsisten & kepemimpinan transformasional.
+                                <span class="font-bold text-red block">Solusi:</span>
+                                Dijembatani oleh kepemimpinan transformasional berintegritas.
                             </li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <section data-transition="fade" data-background-color="#F4F4F4">
-                <div class="slide-border text-center flex flex-col justify-center items-center">
-                    <h1 class="huge-text text-black mb-2"><span class="mg-hover">RECOMMEN-</span></h1>
+            <section data-transition="zoom" data-background-color="#111111">
+                <div class="slide-border bg-black text-white text-center flex flex-col justify-center items-center">
+                    <h1 class="huge-text text-white mb-2"><span class="mg-hover">RECOMMEN-</span></h1>
                     <h1 class="huge-text text-red mt-0 mb-8"><span class="mg-hover">DATIONS</span></h1>
-                    
                     <div class="flex flex-wrap justify-center gap-4 mb-10">
-                        <span class="bg-red text-white border-2 border-black px-4 py-2 font-bold text-sm mg-block-hover">1. Konsensus Nilai Inti</span>
-                        <span class="bg-black text-white border-2 border-black px-4 py-2 font-bold text-sm mg-block-hover">2. Survei Iklim Berkala</span>
-                        <span class="bg-white text-black border-2 border-black px-4 py-2 font-bold text-sm mg-block-hover">3. Kelola Perubahan Bertahap</span>
-                        <span class="bg-red text-white border-2 border-black px-4 py-2 font-bold text-sm mg-block-hover">4. Kepemimpinan Diri</span>
+                        <span class="bg-red text-white px-4 py-2 font-bold text-sm mg-hover">Konsensus Nilai Inti</span>
+                        <span class="border-2 border-gray-600 text-white px-4 py-2 font-bold text-sm mg-hover">Survei Iklim Anonim</span>
+                        <span class="border-2 border-gray-600 text-white px-4 py-2 font-bold text-sm mg-hover">Kelola Perubahan Bertahap</span>
                     </div>
+                </div>
+            </section>
 
-                    <div class="mt-4 border-t-8 border-black pt-8 w-full mg-hover">
-                        <h2 class="text-black mb-2">TERIMA KASIH</h2>
-                        <h4 class="text-red">Q & A SESSION</h4>
+            <section data-transition="fade" class="no-export" style="height: 100%;">
+                <div class="scene-container sunset-bg">
+                    <svg class="scene-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <radialGradient id="laptopGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6" />
+                                <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+                            </radialGradient>
+                        </defs>
+
+                        <!-- Moving Clouds -->
+                        <g class="anim-cloud" fill="#111111" opacity="0.3">
+                            <path d="M 100 150 Q 150 100, 200 150 Q 250 120, 300 160 Q 200 180, 100 150 Z" />
+                            <path d="M 600 200 Q 650 150, 700 180 Q 750 160, 800 200 Q 700 220, 600 200 Z" />
+                        </g>
+
+                        <!-- Ground & Tree -->
+                        <rect x="0" y="500" width="1000" height="100" fill="#111111" />
+                        <path d="M 500 500 C 480 350, 520 200, 500 50 L 520 50 C 540 200, 500 350, 520 500 Z" fill="#111111" />
+                        <path d="M 510 250 C 450 180, 400 150, 350 100 L 370 90 C 420 140, 470 170, 520 230 Z" fill="#111111" />
+                        
+                        <g class="anim-leaf" transform="translate(500, 150)">
+                            <circle cx="-150" cy="-50" r="120" fill="#800815" />
+                            <circle cx="100" cy="-80" r="140" fill="#111111" opacity="0.9" />
+                            <circle cx="0" cy="-120" r="160" fill="#111111" />
+                        </g>
+
+                        <!-- Sleeping Persons -->
+                        <g transform="translate(300, 500)">
+                            <path d="M 0 0 C 40 -10, 80 -10, 120 0 Z" fill="#111111" />
+                            <circle cx="-20" cy="-10" r="20" fill="#111111" />
+                            <rect x="40" y="-30" width="30" height="20" rx="2" fill="#FFFFFF" transform="rotate(-30 40 -30)" />
+                            <circle cx="40" cy="-40" r="60" fill="url(#laptopGlow)" class="anim-light" />
+                        </g>
+                        <g transform="translate(700, 500)">
+                            <path d="M 0 0 C -40 -10, -80 -10, -120 0 Z" fill="#111111" />
+                            <circle cx="20" cy="-10" r="20" fill="#111111" />
+                            <rect x="-70" y="-30" width="30" height="20" rx="2" fill="#FFFFFF" transform="rotate(30 -70 -30)" />
+                            <circle cx="-50" cy="-40" r="60" fill="url(#laptopGlow)" class="anim-light" />
+                        </g>
+                    </svg>
+
+                    <div class="start-overlay" style="opacity:1;">
+                        <h1 class="text-red">TERIMA KASIH</h1>
+                        <p class="text-white">Q & A Session</p>
                     </div>
                 </div>
             </section>
@@ -596,7 +567,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
     <script>
-        // Init Reveal
         Reveal.initialize({
             controls: true,
             progress: true,
@@ -608,199 +578,151 @@
             margin: 0.04,
         });
 
-        // Toast Notification Function
+        // Toast Notification System
         function showToast(message, duration = 3000) {
-            const toast = document.getElementById('custom-toast');
+            const toast = document.getElementById('toast-notification');
             toast.innerText = message;
             toast.classList.add('show');
             setTimeout(() => { toast.classList.remove('show'); }, duration);
         }
 
-        // --- 1. EXPORT PDF: Menggunakan html2canvas & jsPDF Offscreen ---
+        // Full Screen Toggle
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    showToast(`Error: ${err.message}`);
+                });
+                document.getElementById('fs-icon').classList.replace('fa-expand', 'fa-compress');
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    document.getElementById('fs-icon').classList.replace('fa-compress', 'fa-expand');
+                }
+            }
+        }
+
+        // PDF Export using html2canvas & jsPDF
         async function exportPDF() {
-            showToast("Memproses PDF Resolusi Tinggi... Mohon tunggu.", 5000);
+            showToast("Menyiapkan PDF resolusi tinggi... Mohon tunggu.", 5000);
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1024, 768] });
-            const slides = document.querySelectorAll('.reveal .slides > section');
             
-            // Container Offscreen kebal @media print
-            const exportContainer = document.createElement('div');
-            exportContainer.style.position = 'fixed';
-            exportContainer.style.top = '0';
-            exportContainer.style.left = '0';
-            exportContainer.style.width = '1024px';
-            exportContainer.style.height = '768px';
-            exportContainer.style.zIndex = '-9999';
-            document.body.appendChild(exportContainer);
+            const slides = document.querySelectorAll('.reveal .slides > section:not(.no-export)');
+            
+            // Temporary container to render slides off-screen
+            const wrapper = document.createElement('div');
+            wrapper.style.cssText = 'position:fixed; top:0; left:-9999px; width:1024px; height:768px; z-index:-9999;';
+            document.body.appendChild(wrapper);
 
             for (let i = 0; i < slides.length; i++) {
-                exportContainer.innerHTML = '';
+                wrapper.innerHTML = '';
                 let clone = slides[i].cloneNode(true);
                 clone.style.display = 'block';
-                clone.style.transform = 'none';
                 clone.style.width = '1024px';
                 clone.style.height = '768px';
                 
-                // Hapus kelas animasi saat dirender
-                clone.querySelectorAll('.mg-hover, .mg-block-hover').forEach(el => {
-                    el.classList.remove('mg-hover', 'mg-block-hover');
-                });
-
-                // Set background explicit
+                // Remove hover effects for clean render
+                clone.querySelectorAll('.mg-hover, .mg-block-hover').forEach(el => el.classList.remove('mg-hover', 'mg-block-hover'));
                 let bgColor = clone.getAttribute('data-background-color') || '#FFFFFF';
                 clone.style.backgroundColor = bgColor;
-                exportContainer.style.backgroundColor = bgColor;
 
-                exportContainer.appendChild(clone);
+                wrapper.appendChild(clone);
+                await new Promise(r => setTimeout(r, 100)); // wait for render
                 
-                // Jeda agar browser render clone
-                await new Promise(r => setTimeout(r, 150)); 
-                
-                // Render Canvas tanpa memperdulikan CSS Print
-                const canvas = await html2canvas(exportContainer, { 
-                    width: 1024, height: 768, scale: 2, useCORS: true, backgroundColor: bgColor, logging: false
-                });
-                const imgData = canvas.toDataURL('image/png');
+                const canvas = await html2canvas(wrapper, { width: 1024, height: 768, scale: 2, backgroundColor: bgColor, logging: false });
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
                 
                 if (i > 0) doc.addPage([1024, 768], 'landscape');
-                doc.addImage(imgData, 'PNG', 0, 0, 1024, 768);
+                doc.addImage(imgData, 'JPEG', 0, 0, 1024, 768);
             }
             
-            document.body.removeChild(exportContainer);
+            document.body.removeChild(wrapper);
             doc.save("Presentasi_Budaya_Iklim.pdf");
-            showToast("PDF Berhasil Diunduh!", 3000);
+            showToast("PDF Berhasil Diunduh!");
         }
 
-        // --- 2. EXPORT PPTX: Konversi DOM ke Native PowerPoint Editable ---
-        // Helper fungsi konversi RGB CSS ke Hex untuk PPTX
-        function rgbToHex(rgbStr) {
-            if (!rgbStr) return 'FFFFFF';
-            if (rgbStr.startsWith('#')) return rgbStr.substring(1);
-            let rgb = rgbStr.match(/\d+/g);
-            if (!rgb || rgb.length < 3) return 'FFFFFF';
-            return ((1 << 24) + (parseInt(rgb[0]) << 16) + (parseInt(rgb[1]) << 8) + parseInt(rgb[2])).toString(16).slice(1).toUpperCase();
-        }
-
+        // PPTX Export using PptxGenJS (Editable Text & Mapped Coordinates)
         async function exportPPT() {
-            showToast("Merender PPTX (Tata Letak Presisi)... Mohon tunggu.", 5000);
+            showToast("Mengekstrak teks & layout ke PPTX... Mohon tunggu.", 5000);
             let pptx = new PptxGenJS();
-            pptx.layout = 'LAYOUT_4x3'; // 10x7.5 inches = 1024x768 pixels map
-            
-            const px2inX = (px) => px / 102.4;
-            const px2inY = (px) => px / 102.4;
+            pptx.layout = 'LAYOUT_4x3'; // 10 x 7.5 inches (~1024x768 mapping)
+            const px2in = (px) => px / 102.4;
 
-            const slides = document.querySelectorAll('.reveal .slides > section');
+            const slides = document.querySelectorAll('.reveal .slides > section:not(.no-export)');
             
-            // Render Container Offscreen
-            const exportContainer = document.createElement('div');
-            exportContainer.style.position = 'fixed';
-            exportContainer.style.top = '0';
-            exportContainer.style.left = '0';
-            exportContainer.style.width = '1024px';
-            exportContainer.style.height = '768px';
-            exportContainer.style.zIndex = '-9999';
-            exportContainer.style.display = 'block';
-            document.body.appendChild(exportContainer);
+            const wrapper = document.createElement('div');
+            wrapper.style.cssText = 'position:fixed; top:0; left:-9999px; width:1024px; height:768px; z-index:-9999;';
+            document.body.appendChild(wrapper);
 
             for (let i = 0; i < slides.length; i++) {
                 let slidePpt = pptx.addSlide();
-                exportContainer.innerHTML = '';
+                wrapper.innerHTML = '';
                 
                 let clone = slides[i].cloneNode(true);
                 clone.style.display = 'block';
-                clone.style.transform = 'none';
                 clone.style.width = '1024px';
                 clone.style.height = '768px';
-                
-                clone.querySelectorAll('.mg-hover, .mg-block-hover').forEach(el => {
-                    el.classList.remove('mg-hover', 'mg-block-hover');
-                });
+                clone.style.position = 'absolute';
+                clone.querySelectorAll('.mg-hover, .mg-block-hover').forEach(el => el.classList.remove('mg-hover', 'mg-block-hover'));
                 
                 let bgColorStr = clone.getAttribute('data-background-color') || '#FFFFFF';
                 clone.style.backgroundColor = bgColorStr;
-                exportContainer.style.backgroundColor = bgColorStr;
-                slidePpt.background = { color: rgbToHex(bgColorStr) };
+                let hexBg = bgColorStr.startsWith('#') ? bgColorStr.substring(1) : 'FFFFFF';
+                slidePpt.background = { color: hexBg };
                 
-                exportContainer.appendChild(clone);
-                
+                wrapper.appendChild(clone);
                 await new Promise(r => setTimeout(r, 100));
+                const containerRect = wrapper.getBoundingClientRect();
 
-                const containerRect = exportContainer.getBoundingClientRect();
-
-                // 1. Gambar Shapes (Kotak / Border)
-                // Filter elemen yang murni sebagai kontainer berborder/warna
-                let shapes = clone.querySelectorAll('.slide-border, .bg-black, .bg-red, .bg-gray, .bg-white, .border-2, .border-4, .border-8');
-                shapes.forEach(div => {
-                    if(div.tagName === 'H1' || div.tagName === 'H2' || div.tagName === 'P') return; // Abaikan tag teks utama sbg shape jika mungkin
+                // Draw Shapes/Backgrounds
+                clone.querySelectorAll('div').forEach(div => {
                     const style = window.getComputedStyle(div);
                     const rect = div.getBoundingClientRect();
-                    const w = px2inX(rect.width);
-                    const h = px2inY(rect.height);
-                    if (w <= 0.1 || h <= 0.1 || (w > 9.9 && h > 7.4)) return; // Abaikan yg tll kecil atau full background
+                    const w = px2in(rect.width);
+                    const h = px2in(rect.height);
+                    if (w <= 0.1 || h <= 0.1 || (w > 9.9 && h > 7.4)) return; 
 
-                    const x = px2inX(rect.left - containerRect.left);
-                    const y = px2inY(rect.top - containerRect.top);
-
+                    const x = px2in(rect.left - containerRect.left);
+                    const y = px2in(rect.top - containerRect.top);
                     let hasBg = style.backgroundColor !== 'rgba(0, 0, 0, 0)' && style.backgroundColor !== 'transparent';
-                    let hasBorder = parseInt(style.borderWidth) > 0 && style.borderStyle !== 'none';
-
-                    if (hasBg || hasBorder) {
-                        let shapeOpts = { x, y, w, h };
-                        if (hasBg) shapeOpts.fill = { color: rgbToHex(style.backgroundColor) };
-                        if (hasBorder) shapeOpts.line = { color: rgbToHex(style.borderColor), width: parseInt(style.borderWidth) * 0.75 };
-                        slidePpt.addShape(pptx.ShapeType.rect, shapeOpts);
+                    
+                    if (hasBg) {
+                        let rgb = style.backgroundColor.match(/\d+/g);
+                        if(rgb && rgb.length >= 3) {
+                            let hex = ((1 << 24) + (parseInt(rgb[0]) << 16) + (parseInt(rgb[1]) << 8) + parseInt(rgb[2])).toString(16).slice(1).toUpperCase();
+                            slidePpt.addShape(pptx.ShapeType.rect, { x, y, w, h, fill: { color: hex } });
+                        }
                     }
                 });
 
-                // 2. Teks (Parsial Formatting per Kata)
-                let texts = clone.querySelectorAll('h1, h2, h3, h4, h5, p, li');
-                texts.forEach(el => {
-                    // Hindari duplikasi jika elemen ini ada di dalam elemen teks lain
-                    if(el.parentElement.closest('h1, h2, h3, h4, h5, p, li')) return;
-
+                // Draw Editable Text
+                clone.querySelectorAll('h1, h2, h3, h4, h5, p, li').forEach(el => {
                     let rect = el.getBoundingClientRect();
+                    if (rect.width === 0 || rect.height === 0 || el.innerText.trim() === '') return;
                     let style = window.getComputedStyle(el);
-
-                    let textRuns = [];
-                    // Parsing node child untuk deteksi warna berbeda (misal <span> merah di dalam <p> hitam)
-                    Array.from(el.childNodes).forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
-                            textRuns.push({ 
-                                text: (el.tagName === 'LI' && textRuns.length === 0 ? '• ' : '') + node.textContent, 
-                                options: { color: rgbToHex(style.color), bold: parseInt(style.fontWeight) > 500 } 
-                            });
-                        } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'I' && node.tagName !== 'IMG') {
-                            let childStyle = window.getComputedStyle(node);
-                            textRuns.push({ 
-                                text: node.innerText || node.textContent, 
-                                options: { color: rgbToHex(childStyle.color), bold: parseInt(childStyle.fontWeight) > 500 } 
-                            });
-                        }
-                    });
-
-                    if(textRuns.length > 0) {
-                         let align = 'left';
-                         if (style.textAlign === 'center') align = 'center';
-                         if (style.textAlign === 'right') align = 'right';
-
-                         slidePpt.addText(textRuns, {
-                             x: px2inX(rect.left - containerRect.left),
-                             y: px2inY(rect.top - containerRect.top),
-                             w: px2inX(rect.width * 1.05), // Sedikit diperlebar agar tidak wrap paksa
-                             h: px2inY(rect.height),
-                             fontSize: parseFloat(style.fontSize) * 0.75, // Konversi px ke pt
-                             fontFace: 'Arial',
-                             align: align,
-                             valign: 'top',
-                             margin: 0
-                         });
+                    
+                    let rgb = style.color.match(/\d+/g);
+                    let colorHex = '000000';
+                    if(rgb && rgb.length >= 3) {
+                        colorHex = ((1 << 24) + (parseInt(rgb[0]) << 16) + (parseInt(rgb[1]) << 8) + parseInt(rgb[2])).toString(16).slice(1).toUpperCase();
                     }
+
+                    slidePpt.addText((el.tagName === 'LI' ? '• ' : '') + el.innerText.replace(/\n/g, ' '), {
+                        x: px2in(rect.left - containerRect.left),
+                        y: px2in(rect.top - containerRect.top),
+                        w: px2in(rect.width) + 0.5,
+                        h: px2in(rect.height) + 0.2,
+                        fontSize: parseFloat(style.fontSize) * 0.75,
+                        color: colorHex,
+                        bold: parseInt(style.fontWeight) > 500,
+                        fontFace: 'Arial',
+                        valign: 'top', margin: 0
+                    });
                 });
             }
-            
-            document.body.removeChild(exportContainer);
+            document.body.removeChild(wrapper);
             pptx.writeFile({ fileName: "Presentasi_Budaya_Iklim.pptx" });
-            showToast("PPTX Berhasil Diunduh!", 3000);
+            showToast("PPTX Berhasil Diunduh!");
         }
     </script>
 </body>
